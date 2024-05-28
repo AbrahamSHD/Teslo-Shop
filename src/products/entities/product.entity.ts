@@ -51,10 +51,24 @@ export class Product {
     this.slug = this.slug.toLocaleLowerCase()
     .toLocaleLowerCase()
     .replaceAll(" ", "_")
-    .replaceAll("'", "")
+    .replaceAll("-", "")
+    .replaceAll("?", "")
+    .replaceAll("=", "")
+    .replaceAll("/", "")
 
   }
 
-  // @BeforeUpdate()
+  @BeforeUpdate()
+  checkSlugUpdate() {
+    
+    this.slug = this.slug
+    .toLocaleLowerCase()
+    .replaceAll(" ", "_")
+    .replaceAll("-", "")
+    .replaceAll("?", "")
+    .replaceAll("=", "")
+    .replaceAll("/", "")
+
+  }
 
 }
