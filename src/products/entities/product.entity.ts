@@ -1,4 +1,5 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ProductImage } from "./";
 
 @Entity()
 export class Product {
@@ -39,8 +40,19 @@ export class Product {
 
   @Column('text')
   gender: string
-  // tags
-  // images
+
+  @Column('text', {
+    array: true,
+    default: [] 
+  })
+  tags: string[]
+  
+  @OneToMany(
+    () => ProductImage,
+    ( productImage ) => productImage.product,
+    { cascade: true, eager: true }
+  )
+  images?: ProductImage[]
 
   @BeforeInsert()
   checkSlugInsert() {
@@ -51,10 +63,16 @@ export class Product {
     this.slug = this.slug.toLocaleLowerCase()
     .toLocaleLowerCase()
     .replaceAll(" ", "_")
+    .replaceAll(",", "_")
+    .replaceAll("'", "_")
     .replaceAll("-", "")
+    .replaceAll(":", "")
+    .replaceAll(";", "")
     .replaceAll("?", "")
     .replaceAll("=", "")
     .replaceAll("/", "")
+    .replaceAll(">", "")
+    .replaceAll("<", "")
 
   }
 
@@ -64,10 +82,16 @@ export class Product {
     this.slug = this.slug
     .toLocaleLowerCase()
     .replaceAll(" ", "_")
+    .replaceAll(",", "_")
+    .replaceAll("'", "_")
     .replaceAll("-", "")
+    .replaceAll(":", "")
+    .replaceAll(";", "")
     .replaceAll("?", "")
     .replaceAll("=", "")
     .replaceAll("/", "")
+    .replaceAll(">", "")
+    .replaceAll("<", "")
 
   }
 
