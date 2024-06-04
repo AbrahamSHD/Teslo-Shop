@@ -34,4 +34,4 @@
   http://localhost:3000/api/seed
 ```
 
-<!-- 8. Crear una carpeta `products` dentro de la carpeta `static` -->
+8. Crear una carpeta `products` dentro de la carpeta `static`
