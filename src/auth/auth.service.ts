@@ -66,16 +66,23 @@ export class AuthService {
     if ( !this.bcrypt.compare( password, user.password ) )
       throw new UnauthorizedException('Credentials are not valid(pass)')
 
+    //* Retornar el JWT 
     return {
       ...user,
       token: this.getJwtToken({ id: user.id })
     }
-    // Todo: Retornar el JWT 
     // try {
     // } catch (error) {
     //   this.handleDBErrors(error)
     // }
 
+  }
+
+  async checkAuthStatus( user: User ) {
+    return {
+      ...user,
+      token: this.getJwtToken({ id: user.id })
+    }
   }
 
   private getJwtToken( payload: JwtPayload ) {

@@ -45,7 +45,8 @@ import { JwtStrategy } from './strategies/jwt.strategy';
     TypeOrmModule,
     JwtStrategy,
     JwtModule,
-    PassportModule
+    PassportModule,
+    
   ]
 })
 export class AuthModule {}
