@@ -10,6 +10,8 @@ import { FilesModule } from './files/files.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { AuthModule } from './auth/auth.module';
 import { MessagesWsModule } from './messages-ws/messages-ws.module';
+import { MessagesWsGateway } from './messages-ws/messages-ws.gateway';
+import { MessagesWsModule } from './messages-ws/messages-ws.module';
 
 @Module({
   imports: [
@@ -34,5 +36,6 @@ import { MessagesWsModule } from './messages-ws/messages-ws.module';
     AuthModule,
     MessagesWsModule,
   ],
+  providers: [MessagesWsGateway],
 })
 export class AppModule {}

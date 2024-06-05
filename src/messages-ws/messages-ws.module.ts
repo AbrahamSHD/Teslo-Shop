@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import { MessagesWsService } from './messages-ws.service';
-import { MessagesWsController } from './messages-ws.controller';
+import { MessagesWsGateway } from './messages-ws.gateway';
 
 @Module({
-  controllers: [MessagesWsController],
-  providers: [MessagesWsService],
+  providers: [MessagesWsGateway, MessagesWsService],
 })
 export class MessagesWsModule {}
